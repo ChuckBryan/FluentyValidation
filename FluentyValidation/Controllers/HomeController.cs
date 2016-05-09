@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using FluentValidation;
@@ -25,20 +26,20 @@ namespace FluentyValidation.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(Customer model)
+        public async Task<ActionResult> Index(Customer model)
         {
 
             try
             {
-                _mediator.SendAsync(model);
+                await _mediator.SendAsync(model);
                 return RedirectToAction("Index");
             }
             catch (ValidationException ex)
             {
-                ex.Errors.ForEach(e=>
+/*                ex.Errors.ForEach(e=>
                 {
                     ModelState.AddModelError(e.PropertyName, e.ErrorMessage);
-                });
+                });*/
                 return View(model);
             }
             catch (Exception)
