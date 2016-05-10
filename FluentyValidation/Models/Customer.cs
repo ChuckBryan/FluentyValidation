@@ -7,8 +7,7 @@ namespace FluentyValidation.Models
     public class Customer : IAsyncRequest
     {
         public string CustomerName { get; set; }
-        public bool IsPreferred { get; set; }
-        public double Discount { get; set; }
+        public string Email { get; set; }
     }
 
 

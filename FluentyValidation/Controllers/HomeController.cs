@@ -65,5 +65,10 @@ namespace FluentyValidation.Controllers
 
             return View();
         }
+
+        public ActionResult IsASwampy(string email)
+        {
+            return Json(email.ToLower().StartsWith("swampy"), JsonRequestBehavior.AllowGet);
+        }
     }
 }

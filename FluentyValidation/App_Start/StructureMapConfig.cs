@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using FluentValidation;
 using FluentValidation.Mvc;
 using FluentyValidation.Infrastructure;
+using FluentyValidation.Models;
 using StructureMap;
 using StructureMap.Graph;
 
@@ -26,10 +27,9 @@ namespace FluentyValidation
 				cfg.AddRegistry(new MvcRegistry());
 				cfg.AddRegistry(new ActionFilterRegistry(namespacePrefix: "FluentyValidation"));
                 cfg.AddRegistry<MediatrRegistry>();
-
-                cfg.For<ModelValidatorProvider>().Use<FluentValidationModelValidatorProvider>();
-                cfg.For<IValidatorFactory>().Use<StructureMapValidatorFactory>();
                 cfg.AddRegistry<ValidatorRegistry>();
+
+                
                 //Are you using ASP.NET Identity?  If so, you'll probably need to configure some additional services:
 
                 //1) Make IUserStore injectable.  Replace 'ApplicationUser' with whatever your Identity user type is.
@@ -41,7 +41,7 @@ namespace FluentyValidation
                 //3) This will allow you to inject the IAuthenticationManager.  You may not need this, but you will if you 
                 //   used the default ASP.NET MVC project template as a starting point!
                 //cfg.For<IAuthenticationManager>().Use(ctx => ctx.GetInstance<HttpRequestBase>().GetOwinContext().Authentication);
-
+                
                 //TODO: Add other registries and configure your container (if needed)
             });
 
